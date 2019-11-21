@@ -125,7 +125,7 @@ const box6 = {
     }
 }
 box61.clickMe();
-*/
+
 function Person(name){
     this.name = name;
 }
@@ -149,3 +149,68 @@ Person.prototype.myFriends6 =
 }
 var friends = ['Bob', 'Jane', 'Mark'];
 new Person('Mike').myFriends6(friends);
+
+//ES5
+var john = ['John', 26];
+//var name = John[0];
+//var age = John[1];
+//ES6
+const [name, year] = ['John', 26];
+console.log(name);
+console.log(year);
+const obj = {
+    firstName: 'John',
+    lastName: 'Smith'
+};
+const{firstName, lastName} = obj;
+
+const{firstName: a, lastName: b} = obj;
+
+console.log(a);
+console.log(b);
+//ES5
+function calcAgeRetirement(year){
+    const age = new Date().getFullYear() - year;
+    return [age, 65 - age];   
+}
+const [age, retirement] = calcAgeRetirement(1990);
+console.log(age);
+console.log(retirement);
+*/
+const boxes = document.querySelectorAll('.box');
+//ES5
+ var boxesArr5 = Array.prototype.slice.call(boxes);
+boxesArr5.forEach(function(cur){
+    cur.style.backgroundColor = 'dodgerblue';
+})
+ 
+const boxesArr6 = Array.from(boxes);
+boxesArr6.forEach(cur => cur.style.backgroundColor = 'dodgerblue');
+
+//ES5
+/*
+for(var i = 0;i<boxesArr5.length;i++){
+    if(boxesArr5[i].className === 'box blue'){
+        continue;
+    }
+    boxesArr5[i].textContent = 'I changed to blue';
+}
+*/
+//ES6
+for(const cur of boxesArr6){
+    if(cur.className.includes('blue')){
+        continue;
+    }
+    cur.textContent = 'I changed to blue!';
+}
+//ES5
+var ages = [12, 17, 8, 21 ,11];
+var full = ages.map(function(cur){
+    return cur >= 18;
+})
+console.log(full);
+console.log(ages[full.indexOf(true)]);
+
+//ES6
+console.log(ages.findIndex(cur=>cur>18));
+console.log(ages.find(cur=>cur>=18));
